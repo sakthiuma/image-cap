@@ -1,3 +1,22 @@
+weights.py
+Type
+Text
+Size
+3 KB (3,226 bytes)
+Storage used
+5 KB (5,017 bytes)
+Location
+image-captioning-updation-copy
+Owner
+me
+Modified
+2:03 PM by me
+Opened
+2:07 PM by me
+Created
+Jan 16, 2019 with Google Drive Web
+Add a description
+Viewers can download
 import numpy as np
 import math
 import json
@@ -38,9 +57,10 @@ def getImageIds(word,data):
 
 def calculateWeights(wordtoixdict, ixtoworddict, data):
     """ calculates weight of each word relative to the image it appears in """
+   
     weightJsonData=[]
-    sigma = calcSigma(data)
-    
+    #sigma = calcSigma(data)
+    '''
     for img in data :
         #print '1'
         #if img['imgid'] == 1241:
@@ -59,7 +79,7 @@ def calculateWeights(wordtoixdict, ixtoworddict, data):
             img['tokenWeight'].append(weight)
         wtjson = {}
         wtjson['imgid'] = img['imgid']
-        wtjson['feats'] = img['feats']
+        
         wtjson['filename'] = img['filename']
         wtjson['tokens'] = img['tokens']
         wtjson['tokenWeight'] = img['tokenWeight']
@@ -67,8 +87,14 @@ def calculateWeights(wordtoixdict, ixtoworddict, data):
         weightJsonData.append(wtjson)   
     with open('weightJsonData.json', 'w') as outfile:
         json.dump(weightJsonData, outfile)
-  
+ 
     #print data
+    return data
+    '''
+    #data = json.load(open("weightJsonData.json").read())
+    with open("weightJsonData.json",'r') as f:
+      data = json.load(f)
+    print data
     return data
     
 def returnWeights(imgid,gtix,ixtoword,data):
